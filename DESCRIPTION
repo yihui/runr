@@ -1,0 +1,16 @@
+Package: runr
+Title: Run external programs from R
+Description: This package provides mechanisms to run with external programs
+    such as Julia, Shell, and Python, etc. The basic idea is to open a
+    background process, pipe the source code into the process, evaluate it, and
+    obtain the printed results.
+Version: 0.0.1
+Date: 2013-07-23
+Author: Yihui Xie
+Maintainer: Yihui Xie <xie@yihui.name>
+License: GPL
+URL: https://github.com/yihui/runr
+BugReports: https://github.com/yihui/runr/issues
+Collate:
+    'julia.R'
+    'utils.R'
