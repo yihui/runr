@@ -14,3 +14,4 @@ BugReports: https://github.com/yihui/runr/issues
 Collate:
     'julia.R'
     'utils.R'
+    'bash.R'

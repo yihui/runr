@@ -1,1 +1,3 @@
+S3method(print,runr_results)
+export(proc_bash)
 export(proc_julia)
