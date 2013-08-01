@@ -56,6 +56,7 @@ proc_julia = function(port = 2000) {
     stop = function() {
       exec_code('quit()')
       started <<- FALSE
+      invisible()
     }
   )
 }
