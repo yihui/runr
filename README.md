@@ -5,7 +5,14 @@ as Julia, Shell, and Python, etc. The basic idea is to open a background
 process, pipe the source code into the process, evaluate it, and obtain the
 printed results.
 
-At the moment, there is only a simple Julia engine. Contributions welcome!
+At the moment, there are only a few very simple engines:
+
+- a [Julia](http://julialang.org/) engine ([using](inst/lang/julia_socket.jl)
+  TCP sockets; [an example](http://rpubs.com/yihui/julia-knitr))
+- a `bash` engine ([using](inst/lang/bash_fifo.sh) fifo; [an
+  example](http://rpubs.com/yihui/bash-knitr))
+
+Contributions welcome!
 
 This package was originally designed for the [language
 engines](http://yihui.name/knitr/demo/engines) in
