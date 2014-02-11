@@ -11,7 +11,3 @@ Maintainer: Yihui Xie <xie@yihui.name>
 License: GPL
 URL: https://github.com/yihui/runr
 BugReports: https://github.com/yihui/runr/issues
-Collate:
-    'julia.R'
-    'utils.R'
-    'bash.R'

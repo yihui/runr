@@ -8,15 +8,13 @@ proc_julia(port = 2000)
   \item{port}{A TCP port number}
 }
 \value{
-  A list of functions \code{start()}, \code{exec()},
-  \code{running()} (check if the process has been running),
-  and \code{stop()}.
+A list of functions \code{start()}, \code{exec()}, \code{running()}
+  (check if the process has been running), and \code{stop()}.
 }
 \description{
-  This function returns a list of functions to
-  start/run/stop a Julia process. The code is sent to Julia
-  via a socket connection, and the results are written back
-  in another socket connection.
+This function returns a list of functions to start/run/stop a Julia process.
+The code is sent to Julia via a socket connection, and the results are
+written back in another socket connection.
 }
 \examples{
 \dontrun{
