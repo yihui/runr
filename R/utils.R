@@ -29,7 +29,8 @@ print.runr_results = function(x, comment = '# ') {
     is.src = inherits(x[[i]], 'source')
     el = if (is.src) x[[i]][['src']] else x[[i]]
     if (length(el) == 0 || identical(el, '')) next
-    if (!is.src) el = sprintf('%s%s', comment, el)
+    if (!is.src)
+      el = paste(comment, unlist(strsplit(el, '\n')), sep = '', collapse = '\n')
     cat(el, sep = '\n')
   }
 }
