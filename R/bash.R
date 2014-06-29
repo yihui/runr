@@ -24,7 +24,7 @@ proc_bash = function() {
   f1 = basename(tempfile('bash_fifo_in_', '.'))  # the fifo to write commands to bash
   f2 = tempfile('bash_tmp_', '.')  # a temporary file
   f3 = tempfile('bash_fifo_out_', '.')  # another fifo to collect results from f1
-  started <<- FALSE
+  started = FALSE
   exec_code = function(...) {
     if (!started) stop('the process has not been started yet')
     code = c(...)
