@@ -5,7 +5,7 @@
 proc_julia(port = 2000)
 }
 \arguments{
-  \item{port}{A TCP port number}
+\item{port}{A TCP port number}
 }
 \value{
 A list of functions \code{start()}, \code{exec()}, \code{running()}
