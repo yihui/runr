@@ -23,8 +23,8 @@ new_results = function(src, out) {
 
 new_source = function(src) structure(list(src = src), class = 'source')
 
-#' @S3method print runr_results
-print.runr_results = function(x, comment = '# ') {
+#' @export
+print.runr_results = function(x, ..., comment = '# ') {
   for (i in seq_along(x)) {
     is.src = inherits(x[[i]], 'source')
     el = if (is.src) x[[i]][['src']] else x[[i]]
