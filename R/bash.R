@@ -53,6 +53,7 @@ proc_bash = function() {
 
     stop = function() {
       exec_code('exit')
+      unlink(c(f1, f2, f3))
       started <<- FALSE
       invisible()
     }
