@@ -4,7 +4,7 @@ Description: This package provides mechanisms to run with external programs
     such as Julia, Shell, and Python, etc. The basic idea is to open a
     background process, pipe the source code into the process, evaluate it, and
     obtain the printed results.
-Version: 0.0.3
+Version: 0.0.4
 Date: 2013-07-23
 Author: Yihui Xie
 Maintainer: Yihui Xie <xie@yihui.name>
