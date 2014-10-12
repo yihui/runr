@@ -16,6 +16,7 @@
 #' j$stop()
 #' }
 proc_julia = function(port = 2000) {
+  if (Sys.which('julia') == '') stop('Julia was not installed or not in PATH')
 
   sep = rand_string()
   started = FALSE
