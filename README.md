@@ -1,5 +1,7 @@
 # runr
 
+[![Build Status](https://travis-ci.org/yihui/runr.svg)](https://travis-ci.org/yihui/runr)
+
 This is an R package providing mechanisms to run with external programs such
 as Julia, Shell, and Python, etc. The basic idea is to open a background
 process, pipe the source code into the process, evaluate it, and obtain the
