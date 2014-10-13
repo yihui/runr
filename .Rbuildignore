@@ -1,4 +1,3 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-readme.md
 ^\.travis\.yml$
