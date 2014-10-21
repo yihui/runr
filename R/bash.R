@@ -1,13 +1,12 @@
 #' Run a Bash process
 #'
 #' This function returns a list of functions to start/run/stop a Bash process.
-#' The communication between R and Bash is through a FIFO (named pipe), which
-#' may not be supported under some operating systems.
+#' The communication between R and Bash is through a socket.
 #' @return A list of functions.
-#' @author Yihui Xie and Yixuan Qiu
+#' @author Yihui Xie and Yixuan Qiu (converted to use sockets by Adam Lyon)
 #' @export
 #' @examples \dontrun{
-#' b=proc_bash()
+#' b=proc_bash(port=2000, passwd="abcd")
 #' b$start()
 #' b$exec('x=1')
 #' b$exec('echo $x')
@@ -17,20 +16,22 @@
 #' b$running()
 #' b$stop()
 #' }
-proc_bash = function() {
-  if (!capabilities('fifo'))
-    stop('your platform does not support FIFO')
+proc_bash = function(port=2000, passwd="abcd") {
+  if (!capabilities('sockets'))
+    stop('your platform does not support sockets')
 
-  f1 = basename(tempfile('bash_fifo_in_', '.'))  # the fifo to write commands to bash
-  f2 = tempfile('bash_tmp_', '.')  # a temporary file
-  f3 = tempfile('bash_fifo_out_', '.')  # another fifo to collect results from f1
   started = FALSE
   exec_code = function(...) {
     if (!started) stop('the process has not been started yet')
     code = c(...)
-    writeLines(code, f1)
-    out = if (identical(code, 'exit')) character(0) else readLines(f3)
-    new_results(code, gsub(paste('^', f1, ': ', sep = ''), '', out))
+    s = socketConnection(port=port, open='w', blocking=TRUE)
+    writeLines(c(passwd, code), s)
+    close(s)
+    if (identical(code, 'exit')) return(character(0))
+    t = socketConnection(port=port, open='r', server=TRUE, blocking=TRUE)
+    on.exit(close(t))
+    out = readLines(t)
+    new_results(code, gsub('^tmp2: ', '', out))
   }
   list(
     start = function() {
@@ -38,11 +39,12 @@ proc_bash = function() {
         warning('the program has been started')
         return(invisible())
       }
-      bash_fifo = system.file('lang', 'bash_fifo.sh', package = 'runr')
-      system(sprintf('bash %s %s %s %s', shQuote(bash_fifo), f1, f2, f3), wait = FALSE)
+      token=tempfile()
+      bash_server = system.file('lang', 'bash_socket.bash', package='runr')
+      system(sprintf('bash %s %s %s %s', shQuote(bash_server), shQuote(token), port, passwd), wait=FALSE)
       # this is not rigorous, because we really need to know if f1 is a fifo (it
       # does not suffice to exist)
-      while(!file.exists(f1)) Sys.sleep(0.05)
+      while(!file.exists(token)) Sys.sleep(0.05)
       started <<- TRUE
       invisible()
   },
@@ -53,7 +55,6 @@ proc_bash = function() {
 
     stop = function() {
       exec_code('exit')
-      unlink(c(f1, f2, f3))
       started <<- FALSE
       invisible()
     }
