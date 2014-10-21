@@ -28,6 +28,7 @@ proc_bash = function(port=2000, passwd="abcd") {
     writeLines(c(passwd, code), s)
     close(s)
     if (identical(code, 'exit')) return(character(0))
+    Sys.sleep(0.01)
     t = socketConnection(port=port, open='r', server=TRUE, blocking=TRUE)
     on.exit(close(t))
     out = readLines(t)
