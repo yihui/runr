@@ -40,9 +40,12 @@ proc_bash = function(port=2000, passwd="abcd") {
         warning('the program has been started')
         return(invisible())
       }
-      token=tempfile()
-      bash_server = system.file('lang', 'bash_socket.bash', package='runr')
-      system(sprintf('bash %s %s %s %s', shQuote(bash_server), shQuote(token), port, passwd), wait=FALSE)
+      token = tempfile()
+      bash_server = system.file('lang', 'bash_socket.bash', package = 'runr')
+      system(paste(c(
+        'bash', shQuote(bash_server), shQuote(token), port, passwd,
+        mktemp(), mktemp(), mktemp()
+      ), collapse = ' '), wait = FALSE)
       # this is not rigorous, because we really need to know if f1 is a fifo (it
       # does not suffice to exist)
       while(!file.exists(token)) Sys.sleep(0.05)
@@ -61,3 +64,5 @@ proc_bash = function(port=2000, passwd="abcd") {
     }
   )
 }
+
+mktemp = function(...) shQuote(tempfile(...))

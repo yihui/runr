@@ -5,9 +5,9 @@
 token=$1
 port=$2
 passwd=$3
-tmp1=$(mktemp)
-tmp2=$(mktemp)
-tmp3=$(mktemp)
+tmp1=$4
+tmp2=$5
+tmp3=$6
 
 touch $token
 
