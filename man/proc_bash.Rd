@@ -2,7 +2,10 @@
 \alias{proc_bash}
 \title{Run a Bash process}
 \usage{
-proc_bash(port = 2000, passwd = "abcd")
+proc_bash(port = 2000)
+}
+\arguments{
+\item{port}{A TCP port number}
 }
 \value{
 A list of functions.
@@ -13,7 +16,7 @@ The communication between R and Bash is through a socket.
 }
 \examples{
 \dontrun{
-b = proc_bash(port = 2000, passwd = "abcd")
+b = proc_bash()
 b$start()
 b$exec("x=1")
 b$exec("echo $x")
@@ -25,5 +28,6 @@ b$stop()
 }
 }
 \author{
-Yihui Xie and Yixuan Qiu (converted to use sockets by Adam Lyon)
+Originally implemented via FIFO by Yihui Xie and Yixuan Qiu;
+  converted to use sockets by Adam Lyon.
 }
