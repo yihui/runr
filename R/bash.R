@@ -33,7 +33,7 @@ proc_bash = function(port = 2000) {
     t = socketConnection(port=port, open='r', server=TRUE, blocking=TRUE)
     on.exit(close(t))
     out = readLines(t)
-    new_results(code, gsub('^tmp2: ', '', out))
+    new_results(code, out)
   }
   list(
     start = function() {
