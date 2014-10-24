@@ -2,19 +2,18 @@
 \alias{proc_bash}
 \title{Run a Bash process}
 \usage{
-proc_bash()
+proc_bash(port = 2000, passwd = "abcd")
 }
 \value{
 A list of functions.
 }
 \description{
 This function returns a list of functions to start/run/stop a Bash process.
-The communication between R and Bash is through a FIFO (named pipe), which
-may not be supported under some operating systems.
+The communication between R and Bash is through a socket.
 }
 \examples{
 \dontrun{
-b = proc_bash()
+b = proc_bash(port = 2000, passwd = "abcd")
 b$start()
 b$exec("x=1")
 b$exec("echo $x")
@@ -26,5 +25,5 @@ b$stop()
 }
 }
 \author{
-Yihui Xie and Yixuan Qiu
+Yihui Xie and Yixuan Qiu (converted to use sockets by Adam Lyon)
 }
