@@ -38,4 +38,3 @@ do
   done
 
 rm -f $token tmp tmp2 tmp3
-```
