@@ -30,7 +30,7 @@ do
   sleep 0.05
 
   # See http://bit.ly/1vDblqg and http://bit.ly/1wruCeh
-  until exec 6<>/dev/tcp/127.0.0.1/$port; do
+  until exec 6<>/dev/tcp/localhost/$port; do
   sleep 0.05
   done
   cat tmp3 >&6
