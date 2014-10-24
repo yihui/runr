@@ -16,10 +16,11 @@
 #' b$running()
 #' b$stop()
 #' }
-proc_bash = function(port=2000, passwd="abcd") {
+proc_bash = function(port = 2000) {
   if (!capabilities('sockets'))
     stop('your platform does not support sockets')
 
+  passwd = rand_string()
   started = FALSE
   exec_code = function(...) {
     if (!started) stop('the process has not been started yet')
