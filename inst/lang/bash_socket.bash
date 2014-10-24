@@ -5,26 +5,29 @@
 token=$1
 port=$2
 passwd=$3
+tmp1=$(tempfile)
+tmp2=$(tempfile)
+tmp3=$(tempfile)
 
 touch $token
 
 while true
 do
   # Listen for data
-  nc -l $port > tmp
+  nc -l $port > $tmp1
 
   # Check password
-  passwdSent=$(head -n 1 tmp)
+  passwdSent=$(head -n 1 "$tmp1")
 
   if [ "$passwdSent" == "exit" ]
   then
     break
   elif [ "$passwdSent" == "$passwd" ]
   then
-    tail -n +2 tmp > tmp2
-    source tmp2 >& tmp3
+    tail -n +2 $tmp1 > $tmp2
+    source $tmp2 >& $tmp3
   else
-    echo "Bad Password" > tmp3
+    echo "Bad Password" > $tmp3
   fi
 
   sleep 0.05
@@ -33,8 +36,8 @@ do
   until exec 6<>/dev/tcp/localhost/$port; do
   sleep 0.05
   done
-  cat tmp3 >&6
+  cat $tmp3 >&6
   exec 6>&-  # Close
   done
 
-rm -f $token tmp tmp2 tmp3
+rm -f $token $tmp1 $tmp2 $tmp3
