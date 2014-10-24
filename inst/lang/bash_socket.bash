@@ -2,6 +2,8 @@
 #
 # Server for bash <--> R
 #
+set -e
+
 token=$1
 port=$2
 passwd=$3
