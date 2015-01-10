@@ -1,5 +1,5 @@
 Package: runr
-Title: Run external programs from R
+Title: Run External Programs from R
 Description: This package provides mechanisms to run with external programs
     such as Julia, Shell, and Python, etc. The basic idea is to open a
     background process, pipe the source code into the process, evaluate it, and
