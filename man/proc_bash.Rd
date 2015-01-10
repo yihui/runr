@@ -1,3 +1,4 @@
+% Please edit documentation in R/bash.R
 \name{proc_bash}
 \alias{proc_bash}
 \title{Run a Bash process}

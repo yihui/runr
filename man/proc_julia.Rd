@@ -1,3 +1,4 @@
+% Please edit documentation in R/julia.R
 \name{proc_julia}
 \alias{proc_julia}
 \title{Run a Julia process}
