@@ -11,7 +11,8 @@
 #' py = proc_python()
 #' py$start()
 #' py$exec('1+1')
-#' py$exec('import numpy as np', 'a=np.arange(5)', 'a+5')
+#' py$exec('import numpy as np', 'a=np.arange(5)', 'a+5') # return nothing
+#' py$exec('print a+5') # [5 6 7 8 9]
 #' py$running() # should be TRUE
 #' py$stop()
 #' }
@@ -19,14 +20,14 @@
 proc_python <- function(port = 6011){
   if (Sys.which('python') == '') stop('Python was not installed or not in PATH')
   started <- FALSE
+  sep = rand_string()
   exec_code = function(...){
     if (!started) stop('the process has not been started yet')
     code = as.character(c(...))
     s = socketConnection(port = port, open = 'r+', blocking = TRUE, server = FALSE)
     writeLines(code, s)
-    response = readLines(s)
     on.exit(close(s))
-    split_results(response, '\n')
+    split_results(readLines(s), sep)
   }
 
   list(
@@ -38,12 +39,8 @@ proc_python <- function(port = 6011){
       token = tempfile()
       on.exit(unlink(token))
       python_sock = system.file('lang', 'python_scoket.py', package = 'runr')
-      # python_sock = '/home/yalei/runr/inst/lang/python/Server.py'
-      system(sprintf('python %s %s %s', shQuote(python_sock), port, shQuote(token)), wait = FALSE)
-      while (!file.exists(token)) {
-        # wait for the program to start up
-        Sys.sleep(.05)
-      }
+      system(sprintf('python %s %s %s %s', shQuote(python_sock),
+                     port, shQuote(token), sep), wait = FALSE)
       started <<- TRUE
       invisible()
     },
@@ -59,3 +56,5 @@ proc_python <- function(port = 6011){
     }
   )
 }
+
+

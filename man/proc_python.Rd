@@ -22,7 +22,8 @@ written back in another socket connection.
 py = proc_python()
 py$start()
 py$exec("1+1")
-py$exec("import numpy as np", "a=np.arange(5)", "a+5")
+py$exec("import numpy as np", "a=np.arange(5)", "a+5")  # return nothing
+py$exec("print a+5")  # [5 6 7 8 9]
 py$running()  # should be TRUE
 py$stop()
 }
