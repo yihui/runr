@@ -38,7 +38,7 @@ proc_python <- function(port = 6011){
       }
       token = tempfile()
       on.exit(unlink(token))
-      python_sock = system.file('lang', 'python_scoket.py', package = 'runr')
+      python_sock = system.file('lang', 'python_socket.py', package = 'runr')
       system(sprintf('python %s %s %s %s', shQuote(python_sock),
                      port, shQuote(token), sep), wait = FALSE)
       started <<- TRUE
