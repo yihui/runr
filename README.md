@@ -11,7 +11,7 @@ At the moment, there are only a few very simple engines:
 
 - a [Julia](http://julialang.org/) engine ([using](inst/lang/julia_socket.jl)
   TCP sockets; [an example](http://rpubs.com/yihui/julia-knitr))
-- a `bash` engine ([using](inst/lang/bash_socket.bash) fifo; [an
+- a `bash` engine ([using](inst/lang/bash_socket.bash) TCP sockets; [an
   example](http://rpubs.com/yihui/bash-knitr))
 - a `python` engine([using](inst/lang/python_socket.py) TCP sockets; [an example](http://rpubs.com/badbye/python-knitr))
 
