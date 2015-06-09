@@ -6,7 +6,11 @@ Description: This package provides mechanisms to run with external programs
     obtain the printed results.
 Version: 0.0.6
 Date: 2013-07-23
-Author: Yihui Xie
+Authors@R: c(
+    person("Yihui", "Xie", role = c("aut", "cre"), email = "xie@yihui.name"),
+    person("Adam", "Lyon", role = "aut"),
+    person("Yalei", "Du", role = "aut")
+    )
 Maintainer: Yihui Xie <xie@yihui.name>
 License: GPL
 URL: https://github.com/yihui/runr
