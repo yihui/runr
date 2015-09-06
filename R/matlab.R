@@ -12,19 +12,19 @@
 #' mat$start()
 #' mat$exec('1+1')
 #' mat$exec('x = 1 + 1; x = x + x; x;') # return nothing
+#' mat$exec('x = 1 + 1\n x = x + x\n x') # return nothing
 #' mat$exec('5:9') # [     5     6     7     8     9]
+#' mat$exec('x = 1; while x < 10\n disp(x);\n x = x + 1;\n end') #Prints numbers 1 to 9
 #' mat$running() # should be TRUE
 #' mat$stop()
 #' }
 
 proc_matlab <- function(port = 6011, existing=FALSE){
-  require(R.matlab)
   matlab <- NULL
   exec_code = function(...){
     if (is.null(matlab)) stop('the process has not been started yet')
     code = as.character(c(...))
-    code = unlist(strsplit(code, "\n"))
-    result <- sapply(code, function(x) evaluatec(matlab, x))
+    result = sapply(code, function(x) R.matlab::evaluatec(matlab, x))
     return(do.call(paste, c(as.list(result), sep = "\n")))
   }
 
@@ -34,9 +34,9 @@ proc_matlab <- function(port = 6011, existing=FALSE){
         warning('the program has been started')
         return(invisible())
       }
-      Matlab$startServer(port=port)
-      matlab <<- Matlab(port=port)
-      isOpen <- open(matlab, trials=30, interval = 0, timeout = 1)
+      R.matlab::Matlab$startServer(port=port)
+      matlab <<- R.matlab::Matlab(port=port)
+      isOpen = open(matlab, trials=30, interval = 0, timeout = 1)
       if(!isOpen)
       {
         stop("Unable to connect to matlab server")
