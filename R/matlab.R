@@ -19,7 +19,7 @@
 #' mat$stop()
 #' }
 
-proc_matlab <- function(port = 6011, existing=FALSE){
+proc_matlab <- function(port = 6011){
   matlab <- NULL
   exec_code = function(...){
     if (is.null(matlab)) stop('the process has not been started yet')
