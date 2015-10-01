@@ -10,7 +10,7 @@ touch(ARGS[2])
 ## Write the connection handler as a function so that it will be
 ## compiled and to avoid creating nonconst global variables.
 
-function serve(server::Base.TcpServer)
+function serve(server::Base.TCPServer)
     sock = accept(server)
     s = readlines(sock)
     i = 1; x = ""
