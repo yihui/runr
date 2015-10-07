@@ -24,7 +24,7 @@ proc_matlab <- function(port = 6011){
   exec_code = function(...){
     if (is.null(matlab)) stop('the process has not been started yet')
     code = as.character(c(...))
-    result = sapply(code, function(x) R.matlab::evaluatec(matlab, x))
+    result = sapply(code, function(x) R.matlab::evaluate(matlab, x, capture=TRUE))
     return(do.call(paste, c(as.list(result), sep = "\n")))
   }
 
