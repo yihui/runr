@@ -1,7 +1,7 @@
 # ARGS: {port, token_file, separator}
 
 ## Declare global variables as const as that helps type inference
-const server = listen(int(ARGS[1]))
+const server = listen(parse(Int, ARGS[1]))
 const io = IOBuffer()
 
 ## Touch the file indicating that Julia has started
@@ -20,7 +20,7 @@ function serve(server::Base.TCPServer)
         end
         x = x * s[i]
         i += 1
-       
+
         if ismatch(r"^\s*$", x)  ## nothing to parse here
             print(io, x)
             continue
