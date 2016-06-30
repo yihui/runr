@@ -11,6 +11,7 @@ Authors@R: c(
     person("Adam", "Lyon", role = "aut"),
     person("Yalei", "Du", role = "aut")
     )
+Suggests: R.matlab
 Maintainer: Yihui Xie <xie@yihui.name>
 License: GPL
 URL: https://github.com/yihui/runr
