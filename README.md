@@ -14,6 +14,7 @@ At the moment, there are only a few very simple engines:
 - a `bash` engine ([using](inst/lang/bash_socket.bash) TCP sockets; [an
   example](http://rpubs.com/yihui/bash-knitr))
 - a `python` engine([using](inst/lang/python_socket.py) TCP sockets; [an example](http://rpubs.com/badbye/python-knitr))
+- a `ruby` engine([using](inst/lang/ruby_socket.rb) TCP socketss; [an example](http://rpubs.com/y4ashida/ruby-knitr))
 
 Contributions welcome!
 
