@@ -7,6 +7,12 @@ as Julia, Shell, and Python, etc. The basic idea is to open a background
 process, pipe the source code into the process, evaluate it, and obtain the
 printed results.
 
+This package is not on CRAN and there is no plan to release it to CRAN in the near future. You have to install it from Github using **devtools**:
+
+```r
+devtools::install_github('yihui/runr')
+```
+
 At the moment, there are only a few very simple engines:
 
 - a [Julia](http://julialang.org/) engine ([using](inst/lang/julia_socket.jl)
