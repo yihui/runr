@@ -38,7 +38,7 @@ function serve(server::Base.TCPServer)
     end
     close(sock)
     sock = accept(server)
-    write(sock,takebuf_string(io))
+    write(sock,String(take!(io)))
     close(sock)
 end
 
